@@ -1,0 +1,352 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "JSON Schema for Deployment Method",
+    "description": "Deployment Method",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "apiVersion": {
+            "type": "string"
+        },
+        "kind": {
+            "type":"string"
+        },
+        "metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "annotations": {
+                    "type": "object"
+                }
+            },
+            "required": ["name", "version"]
+        },
+        "default_tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "default_plan_tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "default_skip_tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "default_plan_skip_tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "activities": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "short_name": {
+                                "$ref": "#/$defs/s_name"
+                            },
+                            "tags": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "plan_tags": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "isArtifact": {
+                                "type": "string"
+                            },
+                            "is_artifact": {
+                                "type": "boolean"
+                            },
+                            "types": {
+                                "$ref": "#/$defs/d_types"
+                            },
+                            "properties": {
+                                "$ref": "#/$defs/props"
+                            },
+                            "when": {
+                                "$ref": "#/$defs/d_when"
+                            },
+                            "failed_when": {
+                                "$ref": "#/$defs/d_when"
+                            },
+                            "jumps_when": {
+                                "$ref": "#/$defs/d_jump"
+                            },
+                            "loop": {
+                                "$ref": "#/$defs/d_loop"
+                            },
+                            "actions": {
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "description": {
+                                                    "type": "string"
+                                                },
+                                                "short_name": {
+                                                    "$ref": "#/$defs/s_name"
+                                                },
+                                                "isArtifact": {
+                                                    "type": "string"
+                                                },
+                                                "is_artifact": {
+                                                    "type": "boolean"
+                                                },
+                                                "tags": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "plan_tags": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "states": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "types": {
+                                                    "$ref": "#/$defs/d_types"
+                                                },
+                                                "properties": {
+                                                    "$ref": "#/$defs/props"
+                                                },
+                                                "when": {
+                                                    "$ref": "#/$defs/d_when"
+                                                },
+                                                "failed_when": {
+                                                    "$ref": "#/$defs/d_when"
+                                                },
+                                                "jumps_when": {
+                                                    "$ref": "#/$defs/d_jump"
+                                                },
+                                                "loop": {
+                                                    "$ref": "#/$defs/d_loop"
+                                                },
+                                                "steps": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "anyOf": [
+                                                            {
+                                                                "type": "object",
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "name": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "description": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "short_name": {
+                                                                        "$ref": "#/$defs/s_name"
+                                                                    },
+                                                                    "plan_tags": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "tags": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "is_artifact": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "isArtifact": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "types": {
+                                                                        "$ref": "#/$defs/d_types"
+                                                                    },
+                                                                    "when": {
+                                                                    	"$ref": "#/$defs/d_when"
+                                                                    },
+                                                                    "failed_when": {
+                                                                        "$ref": "#/$defs/d_when"
+                                                                    },
+                                                                    "jumps_when": {
+                                                                        "$ref": "#/$defs/d_jump"
+                                                                    },
+                                                                    "loop": {
+                                                                        "$ref": "#/$defs/d_loop"
+                                                                    },
+                                                                    "properties": {
+                                                                        "$ref": "#/$defs/props"
+                                                                    }
+                                                                },
+                                                                "required": ["name"]
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "required": ["name", "steps"]
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "required": ["name", "actions"]
+                    }
+                ]
+            }
+        }
+    },
+    "required": ["apiVersion", "kind", "activities"],
+    "$defs": {
+        "props": {
+            "type": "array",
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "key": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "oneOf": [
+                            {"type": "object"},
+                            {"type": "string"},
+                            {"type": "number"},
+                            {"type": "boolean"},
+                            {"type": "array"}
+                        ]
+                    }
+                },
+                "required": ["key", "value"]
+            }
+        },
+        "s_name": {
+            "type": "string",
+            "maxLength": 30,
+            "pattern": "^([A-Z]|[a-z]|[0-9]|_)+$"
+        },
+        "d_when": {
+            "oneOf": [
+                {"type": "string"},
+                {"type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            ]
+		},
+		"d_loop": {
+            "additionalProperties": false,
+            "properties": {
+                "loop_query": {
+                    "type": "string"
+                },
+                "loop_var": {
+                	"type": "string"
+                }
+            }
+		},
+        "d_jump": {
+            "additionalProperties": false,
+            "type": "array",
+             "items": {
+                "anyOf": [ {
+                    "additionalProperties": false,
+                    "properties": {
+                        "condition": {
+                            "oneOf": [
+                                {"type": "string"},
+                                {"type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            ]
+                        },
+                        "before": {
+                            "type": "boolean"
+                        },
+                        "exit_return_code": {
+                            "type": "integer"
+                        },
+                        "location": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "activity_short_name": {
+                                    "type": "string"
+                                },
+                                "action_short_name": {
+                                    "type": "string"
+                                },
+                                "step_short_name": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["activity_short_name"]
+                        }
+                    },
+                    "required": ["condition", "location"]
+                }
+            ]
+           }
+        },
+		"d_types": {
+            "type": "array",
+            "items": {
+                "anyOf": [ {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["name"]
+                  }
+                ]
+            }
+		}
+    }
+}

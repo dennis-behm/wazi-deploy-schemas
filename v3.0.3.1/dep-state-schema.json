@@ -1,0 +1,131 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "JSON Schema for Deployment State",
+    "description": "Deployment State",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "apiVersion": {
+            "type": "string"
+        },
+        "kind": {
+            "type": "string"
+        },
+        "metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "annotations": {
+                    "type": "object"
+                }
+            },
+            "required": ["name", "version"]
+        },
+        "manifests": {
+            "type": "array",
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "annotations": {
+                        "type": "object"
+                    }
+                },
+                "required": ["name", "version" ]
+            }
+        },
+        "packages": {
+            "type": "array",
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "uri": {
+                        "type": "string"
+                    },
+                    "properties": {
+                        "$ref": "#/$defs/props"
+                    }
+                },
+                "required": ["name", "uri", "type"]
+            }
+        },
+        "artifacts": {
+            "type": "array",
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "hash": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "properties": {
+                        "$ref": "#/$defs/props"
+                    }
+                },
+                "required": ["name", "hash", "type", "state"]
+            }
+        }
+
+    },
+    "required": ["apiVersion", "kind"],
+    "$defs": {
+        "props": {
+            "type": "array",
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "key": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "oneOf": [
+                            {"type": "object"},
+                            {"type": "string"},
+                            {"type": "number"},
+                            {"type": "boolean"},
+                            {"type": "array"}
+                        ]
+                    }
+                },
+                "required": ["key", "value"]
+            }
+        }
+    }
+}
